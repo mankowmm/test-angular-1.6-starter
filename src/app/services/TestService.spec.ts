@@ -1,10 +1,10 @@
-/* import angular = require('angular');
+import angular = require('angular');
 import { mmAngularModuleName } from '../AngularModuleBootstraper';
-import { PostsService } from './PostsService';
+import { TestService } from './TestService';
 
-describe('PostService test suite', () => {
+describe('TestService test suite', () => {
 
-    let service: PostsService;
+    let service: TestService;
     let $httpBackend: any;
 
     // prepare mocked module
@@ -13,7 +13,7 @@ describe('PostService test suite', () => {
     });
 
     beforeEach(inject(function($injector: any) {
-        service = $injector.get('postsService');
+        service = $injector.get('testService');
         $httpBackend = $injector.get('$httpBackend');
         $httpBackend.when('GET', 'https://jsonplaceholder.typicode.com/posts').respond(['post1', 'post2']);
         $httpBackend.when('GET', 'https://jsonplaceholder.typicode.com/posts/1').respond({id: 1, title: 'Some post title'});
@@ -40,4 +40,3 @@ describe('PostService test suite', () => {
     });
 
 });
- */

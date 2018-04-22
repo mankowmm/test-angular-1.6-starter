@@ -1,6 +1,6 @@
 import { mmAngularModule } from '../AngularModuleBootstraper';
 
-export class PostsService {
+export class TestService {
     public static $inject = ['$q', '$http'];
     constructor(private $q: any, private $http: any) {}
 
@@ -31,4 +31,4 @@ export class PostsService {
 
 }
 
-mmAngularModule.service('postsService', PostsService);
+mmAngularModule.service('testService', TestService);

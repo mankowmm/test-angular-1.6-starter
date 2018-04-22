@@ -11,8 +11,8 @@ describe('TestComponent test suite', () => {
     let ctrl;
     let scope;
     let $componentController;
-    let postServiceMock;
-    let postServiceSpy;
+    let testServiceMock;
+    let testServiceSpy;
     let element;
 
     // prepare mocked module
@@ -21,12 +21,12 @@ describe('TestComponent test suite', () => {
     });
 
     // prepare common stuff
-    beforeEach(inject((_$compile_, _$rootScope_: any, _$componentController_: any, _postsService_, _$q_) => {
+    beforeEach(inject((_$compile_, _$rootScope_: any, _$componentController_: any, _testService_, _$q_) => {
         $compile = _$compile_;
         $rootScope = _$rootScope_;
         scope = $rootScope.$new();
         $componentController = _$componentController_;
-        postServiceMock = _postsService_;
+        testServiceMock = _testService_;
         $q = _$q_;
     }));
 
@@ -36,7 +36,7 @@ describe('TestComponent test suite', () => {
         // prepare mock of getPost Service
         var deferred = $q.defer();
         deferred.resolve({id: 1, title: 'Some mocked post'});
-        postServiceSpy = spyOn(postServiceMock , 'getPostDetail').and.returnValue(deferred.promise);
+        testServiceSpy = spyOn(testServiceMock , 'getPostDetail').and.returnValue(deferred.promise);
 
         // get scope and compile element
         scope = $rootScope.$new();
@@ -55,8 +55,8 @@ describe('TestComponent test suite', () => {
     it('should handle properly params to service call', () => {
         ctrl = $componentController('testComponent', null, {id: 100} );
         expect(ctrl.id).toBe(100);
-        expect(postServiceSpy).toHaveBeenCalledTimes(1);
-        expect(postServiceSpy).toHaveBeenCalledWith('100');
+        expect(testServiceSpy).toHaveBeenCalledTimes(1);
+        expect(testServiceSpy).toHaveBeenCalledWith('100');
     });
 
 });

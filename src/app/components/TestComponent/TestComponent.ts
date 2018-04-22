@@ -1,13 +1,13 @@
 import { mmAngularModule } from '../../AngularModuleBootstraper';
-import { PostsService } from '../../services/PostsService';
+import { TestService } from '../../services/TestService';
 
 export class TestComponentController {
-    static $inject = ['postsService'];
+    static $inject = ['testService'];
     public post: any;
     public id: number;
-    constructor(private postService: PostsService) {}
+    constructor(private testService: TestService) {}
     $onInit() {
-        this.postService.getPostDetail(this.id).then(
+        this.testService.getPostDetail(this.id).then(
             (post) => {
                 this.post = post;
             }
