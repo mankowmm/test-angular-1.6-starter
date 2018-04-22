@@ -30,10 +30,15 @@ describe('TestComponent test suite', () => {
         $q = _$q_;
     }));
 
+    // prepare mocks
     beforeEach(() =>  {
+
+        // prepare mock of getPost Service
         var deferred = $q.defer();
         deferred.resolve({id: 1, title: 'Some mocked post'});
         postServiceSpy = spyOn(postServiceMock , 'getPostDetail').and.returnValue(deferred.promise);
+
+        // get scope and compile element
         scope = $rootScope.$new();
         element = angular.element('<test-component id="{{testID}}"></test-component>');
         scope.testID = 100;
@@ -41,13 +46,13 @@ describe('TestComponent test suite', () => {
         scope.$apply();
     });
 
-    it('should render the text in main class', function() {
+    it('should render the text based on bindings', function() {
         expect(element).toBeDefined();
         let mainRootElement = angular.element(element[0].querySelector('.test-component'));
         expect(mainRootElement.text()).toBe('Test content 100');
     });
 
-    it('should handle properly id to service call', () => {
+    it('should handle properly params to service call', () => {
         ctrl = $componentController('testComponent', null, {id: 100} );
         expect(ctrl.id).toBe(100);
         expect(postServiceSpy).toHaveBeenCalledTimes(1);
