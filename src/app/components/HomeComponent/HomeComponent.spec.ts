@@ -1,39 +1,44 @@
-/* import angular = require('angular');
+import angular = require('angular');
 import 'angular-mocks';
 import { mmAngularModuleName } from '../../AngularModuleBootstraper';
 import { HomeComponent } from './HomeComponent';
 
 describe('HomeComponent test suite', () => {
 
-    let $compile: any;
-    let $rootScope: any;
-    let ctrl: any;
-    let scope: any;
-    let $componentController: any;
+    let $compile;
+    let $rootScope;
+    let $q;
+    let ctrl;
+    let scope;
+    let $componentController;
+    let element;
 
     // prepare mocked module
     beforeEach(function() {
         angular.mock.module(mmAngularModuleName);
     });
 
-    // inject the required services and instantiate the controller
-    beforeEach(inject(function(_$rootScope_: any, _$compile_: any, _$componentController_: any) {
-        $rootScope = _$rootScope_;
-        $componentController = _$componentController_;
+    // prepare common stuff
+    beforeEach(inject((_$compile_, _$rootScope_: any, _$componentController_: any, _testService_, _$q_) => {
         $compile = _$compile_;
+        $rootScope = _$rootScope_;
         scope = $rootScope.$new();
-        // prepare controller
-        ctrl = $componentController('homeComponent', { $scope: scope }, null);
+        $componentController = _$componentController_;
     }));
 
-    it('should have main root element', function() {
-        var element = $compile('<home-component></home-component>')($rootScope);
-        $rootScope.$digest();
+    // prepare mocks
+    beforeEach(() =>  {
+        // get scope and compile element
+        scope = $rootScope.$new();
+        element = angular.element('<home-component></home-component>');
+        element = $compile(element)(scope);
+        scope.$apply();
+    });
+
+    it('should render the h1', function() {
         expect(element).toBeDefined();
-        let mainRootElement = angular.element(element[0].querySelector('.home-component'));
-        expect(mainRootElement).toBeDefined();
+        let mainRootElement = angular.element(element[0].querySelector('h1'));
         expect(mainRootElement.text()).toBe('Home content..');
     });
 
 });
- */
