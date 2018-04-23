@@ -1,0 +1,31 @@
+<div class="test-form-component">
+    <form novalidate name="testForm" class="simple-form" ng-submit="$ctrl.onSubmit(testForm)">
+
+        <div class="form-group" ng-class="{'has-error': $ctrl.formSubmitted && testForm.firstName.$error.required}">
+            <label for="firstName">First name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" ng-model="$ctrl.firstName" required/>
+            <span style="color:red" ng-show="$ctrl.formSubmitted && testForm.firstName.$error.required">Field is required</span>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input type="text" class="form-control" id="lastName" ng-model="$ctrl.lastName" />
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" ng-model="$ctrl.email" />
+        </div>
+
+        <!-- Best Editor: 
+            <label><input type="radio" ng-model="user.preference" value="vi" />vi</label>
+            <label><input type="radio" ng-model="user.preference" value="emacs" />emacs</label><br /> -->
+        <input class="btn btn-default" type="reset" ng-click="reset()" value="Reset" />
+        <input class="btn btn-primary" type="submit" value="Save" />
+        
+        <br/><br/>
+        <div class="alert alert-danger" ng-if="$ctrl.formSubmitted && testForm.$invalid">Form has errors - please correct them..</div>
+    </form>
+
+    <br/><br/>
+    <pre>user = {{$ctrl.firstName | json}}</pre>
+    <pre>master = {{$ctrl.lastName | json}}</pre>
+</div>

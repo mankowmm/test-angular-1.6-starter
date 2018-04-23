@@ -38,7 +38,6 @@ module.exports = {
                     'awesome-typescript-loader'
                 ]
             },
-
             {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
@@ -47,7 +46,14 @@ module.exports = {
                     publicPath: '../'
                 }),
             },
-
+            {
+                test: /\.less$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'less-loader'],
+                    publicPath: '../'
+                }),
+            },
             {
                 test: /\.(jpg|png|gif)$/,
                 use: 'file-loader'

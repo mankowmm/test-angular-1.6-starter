@@ -25,6 +25,7 @@ import { mmAngularModuleName, mmAngularModule, bootstrapNgApp } from './app/Angu
 import './app/services/TestService';
 import './app/components/HomeComponent/HomeComponent';
 import './app/components/TestComponent/TestComponent';
+import './app/components/TestFormComponent/TestFormComponent';
 
 /**
  * Define angular routing
@@ -36,6 +37,9 @@ mmAngularModule.config(['$routeProvider', ($routeProvider: any) => {
     })
     .when('/test', {
         template: '<test-component id="100"></test-component>'
+    })
+    .when('/form', {
+        template: '<test-form-component></test-form-component>'
     })
     /*
     .when('/post/:id', {

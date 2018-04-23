@@ -1,6 +1,7 @@
 import { mmAngularModule } from '../AngularModuleBootstraper';
+import { ITestService } from './ITestService';
 
-export class TestService {
+export class TestService implements ITestService {
     public static $inject = ['$q', '$http'];
     constructor(private $q: any, private $http: any) {}
 
@@ -27,6 +28,10 @@ export class TestService {
             }
         );
         return defer.promise;
+    }
+
+    saveUser(someUserData: any) {
+        console.log('will save user:', someUserData);
     }
 
 }
